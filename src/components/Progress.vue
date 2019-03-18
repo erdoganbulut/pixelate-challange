@@ -2,7 +2,9 @@
   section.component.is-progress
     b-progress.ui-progress(:value="now" :max="total" animated)
     .progress--content
-      span.progress--content__item(v-for="index in total + 1" :class="{ 'is-active': index - 1 === now }")
+      span.progress--content__item(
+        v-for="index in total + 1"
+        :class="{ 'is-active': index - 1 === now }")
         span.progress--content__item--circle
           span.progress--content__item--circle--dot
           span.progress--content__item--tooltip(v-if="index - 1 === now")

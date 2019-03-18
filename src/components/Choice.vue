@@ -7,7 +7,7 @@
           :key="'circle' + index"
           :ref="'circle' + index"
           :config="circle"
-          @click="handleClick(index, $event)"
+          @click="handleClick(index)"
           @mouseenter="handleMouseEnter(index)"
           @mouseout="handleMouseOut(index)")
         v-text(
@@ -15,7 +15,7 @@
           :key="'text' + index"
           :ref="'text' + index"
           :config="text"
-          @click="handleClick(index, $event)"
+          @click="handleClick(index)"
           @mouseenter="handleMouseEnter(index)"
           @mouseout="handleMouseOut(index)")
 </template>
@@ -44,43 +44,43 @@ export default {
     ...mapActions({
       nextQuestion: 'nextQuestion',
     }),
-    handleClick(index, e) {
+    handleClick(index) {
       if (this.texts[index].text === this.now) {
-        this.$refs['circle' + index][0].getNode().to({
+        this.$refs[`circle${index}`][0].getNode().to({
           fill: '#4eea89',
           duration: 0.4,
         });
-        this.$refs['text' + index][0].getNode().to({
+        this.$refs[`text${index}`][0].getNode().to({
           fill: '#FFFFFF',
           duration: 0.4,
         });
         setTimeout(() => {
-          this.$refs['circle' + index][0].getNode().to({
+          this.$refs[`circle${index}`][0].getNode().to({
             scaleX: 0,
             scaleY: 0,
             duration: 0.4,
           });
-          this.$refs['text' + index][0].getNode().to({
+          this.$refs[`text${index}`][0].getNode().to({
             fontSize: 0,
             duration: 0.4,
           });
         }, 700);
         this.nextQuestion();
       } else {
-        this.$refs['circle' + index][0].getNode().to({
+        this.$refs[`circle${index}`][0].getNode().to({
           fill: '#eb6e74',
           duration: 0.4,
         });
-        this.$refs['text' + index][0].getNode().to({
+        this.$refs[`text${index}`][0].getNode().to({
           fill: '#FFFFFF',
           duration: 0.4,
         });
         setTimeout(() => {
-          this.$refs['circle' + index][0].getNode().to({
+          this.$refs[`circle${index}`][0].getNode().to({
             fill: '#FFFFFF',
             duration: 0.4,
           });
-          this.$refs['text' + index][0].getNode().to({
+          this.$refs[`text${index}`][0].getNode().to({
             fill: '#7d88a8',
             duration: 0.4,
           });
@@ -88,21 +88,20 @@ export default {
       }
     },
     handleMouseEnter(index) {
-      this.$refs['circle' + index][0].getNode().to({
+      this.$refs[`circle${index}`][0].getNode().to({
         shadowOpacity: 0.1,
         duration: 0.2,
       });
     },
     handleMouseOut(index) {
-      this.$refs['circle' + index][0].getNode().to({
+      this.$refs[`circle${index}`][0].getNode().to({
         shadowOpacity: 0,
         duration: 0.2,
       });
     },
     fillCircles() {
       const circles = [];
-      this.words.forEach(word => {
-        let circle;
+      this.words.forEach((word) => {
         const size = (100 + (word.length * 15)) / 4;
         let position;
         if (circles.length > 0) {
@@ -128,7 +127,7 @@ export default {
             y: size,
           };
         }
-        circle = {
+        const circle = {
           x: position.x,
           y: position.y,
           radius: size,
