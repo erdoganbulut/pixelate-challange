@@ -6,5 +6,6 @@
 
 <style lang="scss">
 @import './scss/vendors';
+@import './scss/global';
 
 </style>
