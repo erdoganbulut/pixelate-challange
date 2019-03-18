@@ -1,6 +1,5 @@
 <template lang="pug">
   #app
-    | home
     router-view
 </template>
 
