@@ -1,52 +1,30 @@
 <template lang="pug">
   section.component.is-progress
-    b-progress.ui-progress(:value="counter" :max="max" animated)
+    b-progress.ui-progress(:value="now" :max="total" animated)
     .progress--content
-      span.progress--content__item
+      span.progress--content__item(v-for="index in total + 1" :class="{ 'is-active': index - 1 === now }")
         span.progress--content__item--circle
           span.progress--content__item--circle--dot
-          span.progress--content__item--tooltip
+          span.progress--content__item--tooltip(v-if="index - 1 === now")
             span.progress--content__item--tooltip--text Ses Havuzu
-            span.progress--content__item--tooltip--number 1 / 10
-      span.progress--content__item.is-active
-        span.progress--content__item--circle
-          span.progress--content__item--circle--dot
-      span.progress--content__item
-        span.progress--content__item--circle
-          span.progress--content__item--circle--dot
-      span.progress--content__item
-        span.progress--content__item--circle
-          span.progress--content__item--circle--dot
-      span.progress--content__item
-        span.progress--content__item--circle
-          span.progress--content__item--circle--dot
-      span.progress--content__item
-        span.progress--content__item--circle
-          span.progress--content__item--circle--dot
-      span.progress--content__item
-        span.progress--content__item--circle
-          span.progress--content__item--circle--dot
-      span.progress--content__item
-        span.progress--content__item--circle
-          span.progress--content__item--circle--dot
-      span.progress--content__item
-        span.progress--content__item--circle
-          span.progress--content__item--circle--dot
-      span.progress--content__item
-        span.progress--content__item--circle
-          span.progress--content__item--circle--dot
-      span.progress--content__item
-        span.progress--content__item--circle
-          span.progress--content__item--circle--dot
+            span.progress--content__item--tooltip--number {{ now }} / 10
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
-  data() {
-    return {
-      counter: 10,
-      max: 100,
-    };
+  computed: {
+    ...mapGetters({
+      answers: 'answers',
+      questions: 'questions',
+    }),
+    total() {
+      return this.questions.length;
+    },
+    now() {
+      return this.total - this.answers.length;
+    },
   },
 };
 </script>
