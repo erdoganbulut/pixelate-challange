@@ -26,4 +26,47 @@
       }
     }
   }
+
+  &.is-rounded {
+    background: #fff;
+    padding: 0px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    line-height: 40px;
+    font-size: 0;
+    text-align: center;
+    overflow: hidden;
+    margin-right: 16px;
+    &:last-child {
+      margin-right: 0;
+    }
+    &:hover {
+      background: lighten(#f0f4f9, 2%);
+    }
+    img {
+      width: 21px;
+      height: auto;
+    }
+  }
+  &.is-radius {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: #fff;
+    padding: 0px;
+    height: 30px;
+    border-radius: 20px;
+    overflow: hidden;
+    color: #8e98b3;
+    font-size: 10px;
+    font-weight: 600;
+    &:hover {
+      background: lighten(#f0f4f9, 2%);
+    }
+    img {
+      height: 8px;
+      width: auto;
+    }
+  }
 }
