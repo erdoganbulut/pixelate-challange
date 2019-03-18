@@ -1,22 +1,23 @@
 <template lang="pug">
-  v-stage(:config="configKonva")
-    v-layer
-      v-circle(
-        v-for="(circle, index) in circles"
-        :key="'circle' + index"
-        :ref="'circle' + index"
-        :config="circle"
-        @click="handleClick(index, $event)"
-        @mouseenter="handleMouseEnter(index)"
-        @mouseout="handleMouseOut(index)")
-      v-text(
-        v-for="(text, index) in texts"
-        :key="'text' + index"
-        :ref="'text' + index"
-        :config="text"
-        @click="handleClick(index, $event)"
-        @mouseenter="handleMouseEnter(index)"
-        @mouseout="handleMouseOut(index)")
+  section.component.is-choice
+    v-stage(:config="configKonva")
+      v-layer
+        v-circle(
+          v-for="(circle, index) in circles"
+          :key="'circle' + index"
+          :ref="'circle' + index"
+          :config="circle"
+          @click="handleClick(index, $event)"
+          @mouseenter="handleMouseEnter(index)"
+          @mouseout="handleMouseOut(index)")
+        v-text(
+          v-for="(text, index) in texts"
+          :key="'text' + index"
+          :ref="'text' + index"
+          :config="text"
+          @click="handleClick(index, $event)"
+          @mouseenter="handleMouseEnter(index)"
+          @mouseout="handleMouseOut(index)")
 </template>
 
 <script>
@@ -165,3 +166,15 @@ export default {
 };
 </script>
 
+<style lang="scss" scoped>
+$this: 'choice';
+
+section.component {
+  &.is-#{$this} {
+    padding: 24px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+</style>
