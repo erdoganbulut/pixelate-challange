@@ -1,0 +1,29 @@
+.ui-btn {
+  &.is-toolbar {
+    display: block;
+    width: 44px;
+    height: auto;
+    min-height: 0px;
+    max-height: none;
+    border-radius: 5px;
+    text-align: center;
+    transition: 0.3s;
+    padding: 6px 0;
+    line-height: 1;
+    font-size: 0px;
+    img {
+      height: 22px;
+      width: auto;
+    }
+    &:hover,
+    &:focus {
+      background: #f0f4f9;
+    }
+    &.is-horizontal {
+      img {
+        height: auto;
+        width: 12px;
+      }
+    }
+  }
+}
